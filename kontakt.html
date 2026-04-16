@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt – Heavan</title>
+  <meta name="description" content="Kontaktiere Heavan. Hier findest du unsere Standorte in Leipzig, Nürnberg und Braunschweig sowie Ansprechpartner für Verkauf, Vermietung und Aus- & Umbau.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html">
+        <img src="assets/Logo_Heavan_RGB_2_ohneSlogan.svg" alt="Heavan Logo">
+      </a>
+
+      <nav class="nav-links" aria-label="Hauptnavigation">
+        <a href="index.html">Startseite</a>
+        <a href="ueber.html">Über Heavan</a>
+        <a href="modelle.html">Unsere Modelle</a>
+        <a href="ausbau.html">Individueller Ausbau</a>
+        <a class="active" href="kontakt.html">Kontakt</a>
+      </nav>
+
+      <button class="menu-toggle" type="button" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero-kontakt">
+      <div class="container hero-content">
+        <span class="eyebrow">Kontakt</span>
+        <h1>Unsere Standorte<br><span class="hero-keep-together">und Ansprechpartner</span></h1>
+        <p>Du hast Fragen zu Vermietung, Kauf oder individuellem Ausbau? Hier findest du unsere Standorte, direkte Kontakte und das passende Formular für deine Anfrage.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#leipzig">Standorte ansehen</a>
+          <a class="btn btn-secondary" href="#kontaktformular">Jetzt anfragen</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-layout">
+        <div class="contact-box">
+          <h2>Allgemeine Kontaktdaten</h2>
+          <p>Du hast Fragen zu Vermietung, Kauf oder individuellem Ausbau? Dann melde dich gern direkt bei uns oder nutze das Kontaktformular.</p>
+
+          <div class="contact-info-list">
+            <div>
+              <strong>Heavan GmbH</strong><br>
+              Zwickauer Straße 145<br>
+              04279 Leipzig
+            </div>
+
+            <div>
+              <strong>Telefon:</strong>
+              <a href="tel:+493419876540">+49 (0)341 9876540</a>
+            </div>
+
+            <div>
+              <strong>E-Mail:</strong>
+              <a href="mailto:leipzig@heavan.de">leipzig@heavan.de</a>
+            </div>
+
+            <div>
+              <strong>Web:</strong>
+              <a href="https://www.heavan-camper.de" target="_blank" rel="noopener noreferrer">www.heavan-camper.de</a>
+            </div>
+          </div>
+
+          <div class="map">
+            <img src="assets/kontakt/location-placeholder.jpeg" alt="Standortbild Heavan Leipzig">
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper" id="kontaktformular">
+          <h2>Kontaktformular</h2>
+
+          <form class="contact-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="vorname">Vorname</label>
+                <input type="text" id="vorname" name="vorname" placeholder="Vorname">
+              </div>
+
+              <div class="form-field">
+                <label for="nachname">Nachname</label>
+                <input type="text" id="nachname" name="nachname" placeholder="Nachname">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" placeholder="E-Mail">
+              </div>
+
+              <div class="form-field">
+                <label for="telefon">Telefon</label>
+                <input type="text" id="telefon" name="telefon" placeholder="Telefonnummer">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="standort">Standort</label>
+                <select id="standort" name="standort">
+                  <option value="">Bitte wählen</option>
+                  <option value="leipzig">Leipzig</option>
+                  <option value="nuernberg">Nürnberg</option>
+                  <option value="braunschweig">Braunschweig</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="bereich">Bereich</label>
+                <select id="bereich" name="bereich">
+                  <option value="">Bitte wählen</option>
+                  <option value="verkauf">Verkauf</option>
+                  <option value="vermietung">Vermietung</option>
+                  <option value="ausbau">Aus- &amp; Umbau</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="nachricht">Nachricht</label>
+              <textarea id="nachricht" name="nachricht" rows="7" placeholder="Deine Nachricht"></textarea>
+            </div>
+
+            <label class="form-check">
+              <input type="checkbox" name="datenschutz">
+              <span>Ich akzeptiere die Verarbeitung meiner Daten gemäß Datenschutzerklärung.</span>
+            </label>
+
+            <button class="btn btn-primary" type="submit">Nachricht senden</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-light" id="leipzig">
+      <div class="container">
+        <h2 class="section-title">Standort Leipzig</h2>
+
+        <div class="contact-location-block">
+          <div class="contact-box">
+            <h3>Hauptsitz Leipzig</h3>
+            <p>
+              <strong>Heavan GmbH</strong><br>
+              Zwickauer Straße 145<br>
+              04279 Leipzig
+            </p>
+            <p>
+              <strong>Telefon:</strong>
+              <a href="tel:+493419876540">+49 (0)341 9876540</a><br>
+              <strong>E-Mail:</strong>
+              <a href="mailto:leipzig@heavan.de">leipzig@heavan.de</a>
+            </p>
+          </div>
+
+          <div class="contact-team-grid">
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Daniel.jpg" alt="Ansprechpartner Verkauf Leipzig">
+              </div>
+              <h3>Verkauf</h3>
+              <div class="contact-person">
+                <strong>Daniel Richter</strong>
+                <a class="phone" href="tel:+493419876541">+49 (0)341 9876541</a>
+                <a class="mail" href="mailto:daniel.richter@heavan.de">daniel.richter@heavan.de</a>
+              </div>
+            </article>
+
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Laura.jpg" alt="Ansprechpartner Vermietung Leipzig">
+              </div>
+              <h3>Vermietung</h3>
+              <div class="contact-person">
+                <strong>Laura König</strong>
+                <a class="phone" href="tel:+493419876542">+49 (0)341 9876542</a>
+                <a class="mail" href="mailto:laura.koenig@heavan.de">laura.koenig@heavan.de</a>
+              </div>
+            </article>
+
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Henry.jpg" alt="Ansprechpartner Ausbau Leipzig">
+              </div>
+              <h3>Aus- &amp; Umbau</h3>
+              <div class="contact-person">
+                <strong>Henry Vogel</strong>
+                <a class="phone" href="tel:+493419876543">+49 (0)341 9876543</a>
+                <a class="mail" href="mailto:henry.vogel@heavan.de">henry.vogel@heavan.de</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="nuernberg">
+      <div class="container">
+        <h2 class="section-title">Standort Nürnberg</h2>
+
+        <div class="contact-location-block">
+          <div class="contact-box">
+            <h3>Team Nürnberg</h3>
+            <p>
+              <strong>Heavan GmbH</strong><br>
+              Fürther Straße 212<br>
+              90429 Nürnberg
+            </p>
+            <p>
+              <strong>Telefon:</strong>
+              <a href="tel:+499114567890">+49 (0)911 4567890</a><br>
+              <strong>E-Mail:</strong>
+              <a href="mailto:nuernberg@heavan.de">nuernberg@heavan.de</a>
+            </p>
+          </div>
+
+          <div class="contact-team-grid">
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Markus.jpg" alt="Ansprechpartner Verkauf Nürnberg">
+              </div>
+              <h3>Verkauf</h3>
+              <div class="contact-person">
+                <strong>Markus Heller</strong>
+                <a class="phone" href="tel:+499114567891">+49 (0)911 4567891</a>
+                <a class="mail" href="mailto:markus.heller@heavan.de">markus.heller@heavan.de</a>
+              </div>
+            </article>
+
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Sarah.jpg" alt="Ansprechpartner Vermietung Nürnberg">
+              </div>
+              <h3>Vermietung</h3>
+              <div class="contact-person">
+                <strong>Sarah Neumann</strong>
+                <a class="phone" href="tel:+499114567892">+49 (0)911 4567892</a>
+                <a class="mail" href="mailto:sarah.neumann@heavan.de">sarah.neumann@heavan.de</a>
+              </div>
+            </article>
+
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Tobias.jpg" alt="Ansprechpartner Ausbau Nürnberg">
+              </div>
+              <h3>Aus- &amp; Umbau</h3>
+              <div class="contact-person">
+                <strong>Tobias Brandt</strong>
+                <a class="phone" href="tel:+499114567893">+49 (0)911 4567893</a>
+                <a class="mail" href="mailto:tobias.brandt@heavan.de">tobias.brandt@heavan.de</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-light" id="braunschweig">
+      <div class="container">
+        <h2 class="section-title">Standort Braunschweig</h2>
+
+        <div class="contact-location-block">
+          <div class="contact-box">
+            <h3>Team Braunschweig</h3>
+            <p>
+              <strong>Heavan GmbH</strong><br>
+              Daimlerstraße 7<br>
+              38112 Braunschweig
+            </p>
+            <p>
+              <strong>Telefon:</strong>
+              <a href="tel:+495312233440">+49 (0)531 2233440</a><br>
+              <strong>E-Mail:</strong>
+              <a href="mailto:braunschweig@heavan.de">braunschweig@heavan.de</a>
+            </p>
+          </div>
+
+          <div class="contact-team-grid">
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Christian.jpg" alt="Ansprechpartner Verkauf Braunschweig">
+              </div>
+              <h3>Verkauf</h3>
+              <div class="contact-person">
+                <strong>Christian Wolff</strong>
+                <a class="phone" href="tel:+495312233441">+49 (0)531 2233441</a>
+                <a class="mail" href="mailto:christian.wolff@heavan.de">christian.wolff@heavan.de</a>
+              </div>
+            </article>
+
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Jana.jpg" alt="Ansprechpartner Vermietung Braunschweig">
+              </div>
+              <h3>Vermietung</h3>
+              <div class="contact-person">
+                <strong>Jana Peters</strong>
+                <a class="phone" href="tel:+495312233442">+49 (0)531 2233442</a>
+                <a class="mail" href="mailto:jana.peters@heavan.de">jana.peters@heavan.de</a>
+              </div>
+            </article>
+
+            <article class="card feature-card">
+              <div class="circle-image">
+                <img src="assets/kontakt/Anna.jpg" alt="Ansprechpartner Ausbau Braunschweig">
+              </div>
+              <h3>Aus- &amp; Umbau</h3>
+              <div class="contact-person">
+                <strong>Anna Müller</strong>
+                <a class="phone" href="tel:+495312233443">+49 (0)531 2233443</a>
+                <a class="mail" href="mailto:anna.mueller@heavan.de">anna.mueller@heavan.de</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-logo">
+        <img src="assets/Logo_Heavan_RGB_2_ohneSlogan.svg" alt="Heavan Logo">
+      </div>
+
+      <div class="newsletter">
+        <label for="newsletter-email-kontakt">Bleib mit uns auf dem neusten Stand!</label>
+        <form class="newsletter-form">
+          <input id="newsletter-email-kontakt" type="email" placeholder="E-Mail">
+          <button class="btn btn-secondary" type="submit">Jetzt anmelden</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© 2026 Heavan GmbH. Alle Rechte vorbehalten.</span>
+      <div class="footer-links">
+        <a href="kontakt.html">Kontakt</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="form-toast" id="contactToast" aria-live="polite" aria-hidden="true">
+    <button class="form-toast-close" type="button" id="contactToastClose" aria-label="Schließen">&times;</button>
+    <strong>Nachricht ist unterwegs 🚐</strong>
+    <p>Danke dir! Deine Nachricht ist bei uns angekommen. Wir melden uns, sobald wir sie geprüft haben.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
