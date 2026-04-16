@@ -642,7 +642,7 @@ img {
   display: flex;
   gap: 1.5rem;
   width: max-content;
-  animation: testimonials-slide 60s linear infinite;
+  animation: testimonials-slide 180s linear infinite;
 }
 
 .testimonials-slider:hover .testimonials-track {
