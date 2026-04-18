@@ -418,3 +418,40 @@ if (
     }
   });
 }
+
+/* -----------------------------------------
+   TESTIMONIALS: MANUELLER DRAG / SWIPE
+----------------------------------------- */
+
+const testimonialsSlider = document.querySelector('.testimonials-slider');
+
+if (testimonialsSlider) {
+  let isDown = false;
+  let startX = 0;
+  let scrollLeft = 0;
+
+  testimonialsSlider.addEventListener('mousedown', (event) => {
+    isDown = true;
+    testimonialsSlider.classList.add('is-dragging');
+    startX = event.pageX - testimonialsSlider.offsetLeft;
+    scrollLeft = testimonialsSlider.scrollLeft;
+  });
+
+  testimonialsSlider.addEventListener('mouseleave', () => {
+    isDown = false;
+    testimonialsSlider.classList.remove('is-dragging');
+  });
+
+  testimonialsSlider.addEventListener('mouseup', () => {
+    isDown = false;
+    testimonialsSlider.classList.remove('is-dragging');
+  });
+
+  testimonialsSlider.addEventListener('mousemove', (event) => {
+    if (!isDown) return;
+    event.preventDefault();
+    const x = event.pageX - testimonialsSlider.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    testimonialsSlider.scrollLeft = scrollLeft - walk;
+  });
+}
