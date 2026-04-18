@@ -416,17 +416,14 @@ if (
 ----------------------------------------- */
 
 const testimonialsSlider = document.querySelector('.testimonials-slider');
-const testimonialsTrack = document.querySelector('.testimonials-track');
 
-if (testimonialsSlider && testimonialsTrack) {
+if (testimonialsSlider) {
   const isMobileTestimonials = () => window.innerWidth <= 760;
 
-  const toggleTestimonialsPause = () => {
+  testimonialsSlider.addEventListener('click', () => {
     if (!isMobileTestimonials()) return;
     testimonialsSlider.classList.toggle('is-paused');
-  };
-
-  testimonialsSlider.addEventListener('touchstart', toggleTestimonialsPause, { passive: true });
+  });
 
   window.addEventListener('resize', () => {
     if (!isMobileTestimonials()) {
