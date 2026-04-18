@@ -416,18 +416,49 @@ if (
 ----------------------------------------- */
 
 const testimonialsSlider = document.querySelector('.testimonials-slider');
+const testimonialsTrack = document.querySelector('.testimonials-track');
 
-if (testimonialsSlider) {
+if (testimonialsSlider && testimonialsTrack) {
   const isMobileTestimonials = () => window.innerWidth <= 760;
 
-  testimonialsSlider.addEventListener('click', () => {
-    if (!isMobileTestimonials()) return;
-    testimonialsSlider.classList.toggle('is-paused');
-  });
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  testimonialsSlider.addEventListener(
+    'touchstart',
+    (event) => {
+      if (!isMobileTestimonials()) return;
+
+      const touch = event.changedTouches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    },
+    { passive: true }
+  );
+
+  testimonialsSlider.addEventListener(
+    'touchend',
+    (event) => {
+      if (!isMobileTestimonials()) return;
+
+      const touch = event.changedTouches[0];
+      const deltaX = Math.abs(touch.clientX - touchStartX);
+      const deltaY = Math.abs(touch.clientY - touchStartY);
+
+      const isTap = deltaX < 10 && deltaY < 10;
+
+      if (!isTap) return;
+
+      const isPaused = testimonialsSlider.classList.toggle('is-paused');
+      testimonialsTrack.style.animationPlayState = isPaused ? 'paused' : 'running';
+    },
+    { passive: true }
+  );
 
   window.addEventListener('resize', () => {
     if (!isMobileTestimonials()) {
       testimonialsSlider.classList.remove('is-paused');
+      testimonialsTrack.style.animationPlayState = '';
     }
   });
 }
