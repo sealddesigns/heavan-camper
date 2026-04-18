@@ -417,4 +417,43 @@ if (
       showImage(currentIndex);
     }
   });
+
+  /* -----------------------------------------
+   TESTIMONIALS-SLIDER PAUSE BEI HOVER / TOUCH
+----------------------------------------- */
+
+const testimonialsSlider = document.querySelector('.testimonials-slider');
+
+if (testimonialsSlider) {
+  let touchPauseTimeout;
+
+  /* Mobile / Touch:
+     1x tippen = pausieren
+     nochmal tippen außerhalb oder nach Zeit wieder weiter möglich */
+  testimonialsSlider.addEventListener('click', () => {
+    testimonialsSlider.classList.toggle('is-paused');
+
+    clearTimeout(touchPauseTimeout);
+
+    if (testimonialsSlider.classList.contains('is-paused')) {
+      touchPauseTimeout = setTimeout(() => {
+        testimonialsSlider.classList.remove('is-paused');
+      }, 12000);
+    }
+  });
+
+  /* Optional: Wenn Finger länger aufliegt, direkt pausieren */
+  testimonialsSlider.addEventListener('touchstart', () => {
+    testimonialsSlider.classList.add('is-paused');
+    clearTimeout(touchPauseTimeout);
+  }, { passive: true });
+
+  /* Beim Loslassen noch etwas Pause lassen, damit man weiterlesen kann */
+  testimonialsSlider.addEventListener('touchend', () => {
+    clearTimeout(touchPauseTimeout);
+    touchPauseTimeout = setTimeout(() => {
+      testimonialsSlider.classList.remove('is-paused');
+    }, 12000);
+  }, { passive: true });
+}
 }
