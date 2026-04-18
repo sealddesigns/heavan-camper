@@ -419,41 +419,26 @@ if (
   });
 
   /* -----------------------------------------
-   TESTIMONIALS-SLIDER PAUSE BEI HOVER / TOUCH
+   TESTIMONIALS-SLIDER PAUSE (TOUCH + HOVER)
 ----------------------------------------- */
 
 const testimonialsSlider = document.querySelector('.testimonials-slider');
 
 if (testimonialsSlider) {
-  let touchPauseTimeout;
+  let isPaused = false;
 
-  /* Mobile / Touch:
-     1x tippen = pausieren
-     nochmal tippen außerhalb oder nach Zeit wieder weiter möglich */
+  // MOBILE: Tap = Toggle Pause
   testimonialsSlider.addEventListener('click', () => {
-    testimonialsSlider.classList.toggle('is-paused');
+    isPaused = !isPaused;
 
-    clearTimeout(touchPauseTimeout);
-
-    if (testimonialsSlider.classList.contains('is-paused')) {
-      touchPauseTimeout = setTimeout(() => {
-        testimonialsSlider.classList.remove('is-paused');
-      }, 12000);
+    if (isPaused) {
+      testimonialsSlider.classList.add('is-paused');
+    } else {
+      testimonialsSlider.classList.remove('is-paused');
     }
   });
 
-  /* Optional: Wenn Finger länger aufliegt, direkt pausieren */
-  testimonialsSlider.addEventListener('touchstart', () => {
-    testimonialsSlider.classList.add('is-paused');
-    clearTimeout(touchPauseTimeout);
-  }, { passive: true });
-
-  /* Beim Loslassen noch etwas Pause lassen, damit man weiterlesen kann */
-  testimonialsSlider.addEventListener('touchend', () => {
-    clearTimeout(touchPauseTimeout);
-    touchPauseTimeout = setTimeout(() => {
-      testimonialsSlider.classList.remove('is-paused');
-    }, 12000);
-  }, { passive: true });
+  // OPTIONAL: visuelles Feedback (Cursor)
+  testimonialsSlider.style.cursor = 'pointer';
 }
 }
