@@ -407,26 +407,26 @@ img {
 }
 
 .hero-start::after {
-  background-image: url('assets/startseite/hero-startseite.jpg');
+  background-image: url('assets/startseite/hero-startseite.webp');
 }
 
 .hero-ueber::after {
-  background-image: url('assets/ueber/hero-ueber-heavan.jpeg');
+  background-image: url('assets/ueber/hero-ueber-heavan.webp');
   background-position: center center;
 }
 
 .hero-modelle::after {
-  background-image: url('assets/modelle/hero-modelle.jpeg');
+  background-image: url('assets/modelle/hero-modelle.webp');
   background-position: center center;
 }
 
 .hero-ausbau::after {
-  background-image: url('assets/ausbau/hero-ausbau.jpeg');
+  background-image: url('assets/ausbau/hero-ausbau.webp');
   background-position: center center;
 }
 
 .hero-kontakt::after {
-  background-image: url('assets/kontakt/hero-kontakt.jpeg');
+  background-image: url('assets/kontakt/hero-kontakt.webp');
   background-position: left center;
 }
 
@@ -753,15 +753,15 @@ img {
 }
 
 .cta-ueber::after {
-  background-image: url('assets/ueber/cta-ueber.jpeg');
+  background-image: url('assets/ueber/cta-ueber.webp');
 }
 
 .cta-modelle::after {
-  background-image: url('assets/modelle/cta-modelle.jpeg');
+  background-image: url('assets/modelle/cta-modelle.webp');
 }
 
 .cta-ausbau::after {
-  background-image: url('assets/ausbau/cta-ausbau.jpeg');
+  background-image: url('assets/ausbau/cta-ausbau.webp');
 }
 
 .cta-box {
@@ -1864,8 +1864,7 @@ img {
   .hero-modelle-content,
   .hero-ausbau .hero-content,
   .hero-kontakt .hero-content {
-  padding: 4.5rem 0.2rem 2.8rem;
-  }
+  padding: 4.5rem clamp(1rem, 4vw, 1.2rem) 2.8rem;  }
   .gallery-masonry {
     columns: 1;
   }
