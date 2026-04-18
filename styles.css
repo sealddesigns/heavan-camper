@@ -696,26 +696,6 @@ img {
   opacity: 0.82;
 }
 
-.testimonials-slider.is-paused .testimonials-track {
-  animation-play-state: paused;
-}
-
-.testimonials-slider::after {
-  content: 'Tippen zum Pausieren';
-  position: absolute;
-  bottom: 10px;
-  right: 15px;
-  font-size: 0.75rem;
-  color: white;
-  opacity: 0.7;
-}
-
-@media (hover: hover) {
-  .testimonials-slider::after {
-    content: 'Hover zum Pausieren';
-  }
-}
-
 @keyframes testimonials-slide {
   0% {
     transform: translateX(0);
