@@ -338,7 +338,6 @@ if (contactToastClose) {
 const lightboxImages = document.querySelectorAll('.gallery-masonry img, .lightbox-trigger');
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
-const lightboxCaption = document.getElementById('lightboxCaption');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
@@ -356,15 +355,8 @@ if (
 
   const showImage = (index) => {
     currentIndex = index;
-    const currentImage = images[currentIndex];
-
-    lightboxImage.src = currentImage.src;
-    lightboxImage.alt = currentImage.alt || 'Großansicht';
-
-    if (lightboxCaption) {
-      lightboxCaption.textContent =
-        currentImage.dataset.caption || currentImage.alt || '';
-    }
+    lightboxImage.src = images[currentIndex].src;
+    lightboxImage.alt = images[currentIndex].alt || 'Großansicht';
   };
 
   const closeLightbox = () => {
@@ -416,42 +408,5 @@ if (
       currentIndex = (currentIndex + 1) % images.length;
       showImage(currentIndex);
     }
-  });
-}
-
-/* -----------------------------------------
-   TESTIMONIALS: MANUELLER DRAG / SWIPE
------------------------------------------ */
-
-const testimonialsSlider = document.querySelector('.testimonials-slider');
-
-if (testimonialsSlider) {
-  let isDown = false;
-  let startX = 0;
-  let scrollLeft = 0;
-
-  testimonialsSlider.addEventListener('mousedown', (event) => {
-    isDown = true;
-    testimonialsSlider.classList.add('is-dragging');
-    startX = event.pageX - testimonialsSlider.offsetLeft;
-    scrollLeft = testimonialsSlider.scrollLeft;
-  });
-
-  testimonialsSlider.addEventListener('mouseleave', () => {
-    isDown = false;
-    testimonialsSlider.classList.remove('is-dragging');
-  });
-
-  testimonialsSlider.addEventListener('mouseup', () => {
-    isDown = false;
-    testimonialsSlider.classList.remove('is-dragging');
-  });
-
-  testimonialsSlider.addEventListener('mousemove', (event) => {
-    if (!isDown) return;
-    event.preventDefault();
-    const x = event.pageX - testimonialsSlider.offsetLeft;
-    const walk = (x - startX) * 1.2;
-    testimonialsSlider.scrollLeft = scrollLeft - walk;
   });
 }
