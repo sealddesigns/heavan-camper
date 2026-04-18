@@ -71,267 +71,6 @@ overviewSliders.forEach((slider) => {
 });
 
 /* -----------------------------------------
-   MODELLE-MODAL
------------------------------------------ */
-
-const modal = document.getElementById('modelsModal');
-const modalBackdrop = document.getElementById('modelsModalBackdrop');
-const modalClose = document.getElementById('modelsModalClose');
-const modalTitle = document.getElementById('modelsModalTitle');
-const modalSubtitle = document.getElementById('modelsModalSubtitle');
-const modalForm = document.getElementById('modelsModalForm');
-const modalStatus = document.getElementById('modelsModalStatus');
-const modalMessage = document.getElementById('modal-message');
-
-const openFormButtons = document.querySelectorAll('.action-open-form');
-
-const openModal = (type, model) => {
-  if (!modal) return;
-
-  modal.classList.add('is-open');
-  modal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-
-  if (modalTitle) {
-    modalTitle.textContent = `${type}-Anfrage`;
-  }
-
-  if (modalSubtitle) {
-    modalSubtitle.textContent = `Du interessierst dich für ${model}. Bitte fülle das Formular aus.`;
-  }
-
-  if (modalMessage) {
-    modalMessage.value = `Hallo Heavan,\n\nich interessiere mich für ${model} (${type}).\n\nBitte meldet euch bei mir zurück.\n`;
-  }
-
-  if (modalStatus) {
-    modalStatus.textContent = '';
-  }
-};
-
-const closeModal = () => {
-  if (!modal) return;
-
-  modal.classList.remove('is-open');
-  modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-
-  if (modalForm) {
-    modalForm.reset();
-  }
-
-  if (modalStatus) {
-    modalStatus.textContent = '';
-  }
-};
-
-openFormButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const type = button.dataset.type || 'Anfrage';
-    const model = button.dataset.model || 'Modell';
-    openModal(type, model);
-  });
-});
-
-if (modalBackdrop) {
-  modalBackdrop.addEventListener('click', closeModal);
-}
-
-if (modalClose) {
-  modalClose.addEventListener('click', closeModal);
-}
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && modal && modal.classList.contains('is-open')) {
-    closeModal();
-  }
-});
-
-if (modalForm && modalStatus) {
-  modalForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    modalStatus.textContent = 'Vielen Dank! Deine Anfrage wurde erfolgreich übermittelt.';
-    modalForm.reset();
-  });
-}
-
-/* -----------------------------------------
-   AUSBAU-MODAL
------------------------------------------ */
-
-const ausbauModal = document.getElementById('ausbauModal');
-const ausbauModalBackdrop = document.getElementById('ausbauModalBackdrop');
-const ausbauModalClose = document.getElementById('ausbauModalClose');
-const ausbauModalTitle = document.getElementById('ausbauModalTitle');
-const ausbauModalSubtitle = document.getElementById('ausbauModalSubtitle');
-const ausbauModalForm = document.getElementById('ausbauModalForm');
-const ausbauModalStatus = document.getElementById('ausbauModalStatus');
-const ausbauModalMessage = document.getElementById('ausbau-message');
-
-const openAusbauButtons = document.querySelectorAll('.action-open-ausbau-form');
-
-const openAusbauModal = (pkg) => {
-  if (!ausbauModal) return;
-
-  ausbauModal.classList.add('is-open');
-  ausbauModal.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-
-  if (ausbauModalTitle) {
-    ausbauModalTitle.textContent = 'Ausbau-Anfrage';
-  }
-
-  if (ausbauModalSubtitle) {
-    ausbauModalSubtitle.textContent = `Du interessierst dich für ${pkg}. Bitte fülle das Formular aus.`;
-  }
-
-  if (ausbauModalMessage) {
-    ausbauModalMessage.value = `Hallo Heavan,\n\nich interessiere mich für das Paket ${pkg}.\n\nBitte meldet euch bei mir zurück.\n`;
-  }
-
-  if (ausbauModalStatus) {
-    ausbauModalStatus.textContent = '';
-  }
-};
-
-const closeAusbauModal = () => {
-  if (!ausbauModal) return;
-
-  ausbauModal.classList.remove('is-open');
-  ausbauModal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-
-  if (ausbauModalForm) {
-    ausbauModalForm.reset();
-  }
-
-  if (ausbauModalStatus) {
-    ausbauModalStatus.textContent = '';
-  }
-};
-
-openAusbauButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const pkg = button.dataset.package || 'Ausbaupaket';
-    openAusbauModal(pkg);
-  });
-});
-
-if (ausbauModalBackdrop) {
-  ausbauModalBackdrop.addEventListener('click', closeAusbauModal);
-}
-
-if (ausbauModalClose) {
-  ausbauModalClose.addEventListener('click', closeAusbauModal);
-}
-
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && ausbauModal && ausbauModal.classList.contains('is-open')) {
-    closeAusbauModal();
-  }
-});
-
-if (ausbauModalForm && ausbauModalStatus) {
-  ausbauModalForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    ausbauModalStatus.textContent = 'Vielen Dank! Deine Anfrage wurde erfolgreich übermittelt.';
-    ausbauModalForm.reset();
-  });
-}
-
-/* -----------------------------------------
-   NEWSLETTER-BESTÄTIGUNG
------------------------------------------ */
-
-let newsletterToastTimeout;
-
-const createNewsletterToast = () => {
-  let toast = document.getElementById('newsletterToast');
-
-  if (toast) return toast;
-
-  toast = document.createElement('div');
-  toast.id = 'newsletterToast';
-  toast.className = 'newsletter-toast';
-  toast.innerHTML = `
-    <button class="newsletter-toast-close" type="button" aria-label="Schließen">&times;</button>
-    <strong>Willkommen bei Heavan</strong>
-    <p>Deine Anmeldung ist angekommen. Ab jetzt bekommst du frisches Fernweh direkt ins Postfach.</p>
-  `;
-
-  document.body.appendChild(toast);
-
-  const closeBtn = toast.querySelector('.newsletter-toast-close');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      toast.classList.remove('is-visible');
-    });
-  }
-
-  return toast;
-};
-
-const showNewsletterToast = () => {
-  const toast = createNewsletterToast();
-
-  clearTimeout(newsletterToastTimeout);
-  toast.classList.add('is-visible');
-
-  newsletterToastTimeout = setTimeout(() => {
-    toast.classList.remove('is-visible');
-  }, 4200);
-};
-
-document.querySelectorAll('.newsletter-form').forEach((form) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    form.reset();
-    showNewsletterToast();
-  });
-});
-
-/* -----------------------------------------
-   KONTAKTFORMULAR-TOAST
------------------------------------------ */
-
-const contactForm = document.querySelector('.contact-form');
-const contactToast = document.getElementById('contactToast');
-const contactToastClose = document.getElementById('contactToastClose');
-
-let contactToastTimeout;
-
-const showContactToast = () => {
-  if (!contactToast) return;
-
-  contactToast.classList.add('is-visible');
-  contactToast.setAttribute('aria-hidden', 'false');
-
-  clearTimeout(contactToastTimeout);
-  contactToastTimeout = setTimeout(() => {
-    hideContactToast();
-  }, 4500);
-};
-
-const hideContactToast = () => {
-  if (!contactToast) return;
-
-  contactToast.classList.remove('is-visible');
-  contactToast.setAttribute('aria-hidden', 'true');
-};
-
-if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    contactForm.reset();
-    showContactToast();
-  });
-}
-
-if (contactToastClose) {
-  contactToastClose.addEventListener('click', hideContactToast);
-}
-
-/* -----------------------------------------
    LIGHTBOX GALLERY + BESTSELLER
 ----------------------------------------- */
 
@@ -394,51 +133,68 @@ if (
     showImage(currentIndex);
   });
 
-  lightbox.addEventListener('click', (event) => {
-    if (event.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
   document.addEventListener('keydown', (event) => {
     if (!lightbox.classList.contains('is-visible')) return;
 
-    if (event.key === 'Escape') {
-      closeLightbox();
-    }
-
+    if (event.key === 'Escape') closeLightbox();
     if (event.key === 'ArrowLeft') {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       showImage(currentIndex);
     }
-
     if (event.key === 'ArrowRight') {
       currentIndex = (currentIndex + 1) % images.length;
       showImage(currentIndex);
     }
   });
+}
 
-  /* -----------------------------------------
-   TESTIMONIALS-SLIDER PAUSE (TOUCH + HOVER)
+/* -----------------------------------------
+   TESTIMONIALS SLIDER (FIXED VERSION)
 ----------------------------------------- */
 
 const testimonialsSlider = document.querySelector('.testimonials-slider');
+const testimonialsToggle = document.querySelector('.testimonials-toggle');
 
 if (testimonialsSlider) {
   let isPaused = false;
 
-  // MOBILE: Tap = Toggle Pause
-  testimonialsSlider.addEventListener('click', () => {
+  const togglePause = () => {
     isPaused = !isPaused;
 
-    if (isPaused) {
-      testimonialsSlider.classList.add('is-paused');
-    } else {
+    testimonialsSlider.classList.toggle('is-paused', isPaused);
+
+    if (testimonialsToggle) {
+      testimonialsToggle.textContent = isPaused
+        ? 'Slideshow fortsetzen'
+        : 'Slideshow pausieren';
+
+      testimonialsToggle.setAttribute('aria-pressed', isPaused);
+    }
+  };
+
+  // 👉 Button (beste UX)
+  if (testimonialsToggle) {
+    testimonialsToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePause();
+    });
+  }
+
+  // 👉 Mobile Tap fallback
+  testimonialsSlider.addEventListener('click', () => {
+    if (!testimonialsToggle) togglePause();
+  });
+
+  // 👉 Desktop Hover Pause
+  testimonialsSlider.addEventListener('mouseenter', () => {
+    testimonialsSlider.classList.add('is-paused');
+  });
+
+  testimonialsSlider.addEventListener('mouseleave', () => {
+    if (!isPaused) {
       testimonialsSlider.classList.remove('is-paused');
     }
   });
 
-  // OPTIONAL: visuelles Feedback (Cursor)
   testimonialsSlider.style.cursor = 'pointer';
-}
 }
