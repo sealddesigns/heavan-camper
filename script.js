@@ -412,25 +412,24 @@ if (
 }
 
 /* -----------------------------------------
-   TESTIMONIALS MOBILE: TAP TO PAUSE
+   TESTIMONIALS MOBILE: TAP TO PAUSE / RESUME
 ----------------------------------------- */
 
 const testimonialsSlider = document.querySelector('.testimonials-slider');
+const testimonialsTrack = document.querySelector('.testimonials-track');
 
-if (testimonialsSlider) {
-  let testimonialsPausedManually = false;
+if (testimonialsSlider && testimonialsTrack) {
   const isMobileTestimonials = () => window.innerWidth <= 760;
 
-  testimonialsSlider.addEventListener('click', () => {
+  const toggleTestimonialsPause = () => {
     if (!isMobileTestimonials()) return;
+    testimonialsSlider.classList.toggle('is-paused');
+  };
 
-    testimonialsPausedManually = !testimonialsPausedManually;
-    testimonialsSlider.classList.toggle('is-paused', testimonialsPausedManually);
-  });
+  testimonialsSlider.addEventListener('touchstart', toggleTestimonialsPause, { passive: true });
 
   window.addEventListener('resize', () => {
     if (!isMobileTestimonials()) {
-      testimonialsPausedManually = false;
       testimonialsSlider.classList.remove('is-paused');
     }
   });
