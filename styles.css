@@ -649,6 +649,10 @@ img {
   animation-play-state: paused;
 }
 
+.testimonials-slider.is-paused .testimonials-track {
+  animation-play-state: paused;
+}
+
 .testimonial {
   flex: 0 0 min(360px, 85vw);
   padding: 1.6rem;
@@ -1852,6 +1856,10 @@ img {
 
   .hero-keep-together {
     white-space: normal;
+  }
+
+  .testimonials-track {
+  animation-duration: 320s;
   }
 }
 

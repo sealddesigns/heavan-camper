@@ -410,3 +410,28 @@ if (
     }
   });
 }
+
+/* -----------------------------------------
+   TESTIMONIALS MOBILE: TAP TO PAUSE
+----------------------------------------- */
+
+const testimonialsSlider = document.querySelector('.testimonials-slider');
+
+if (testimonialsSlider) {
+  let testimonialsPausedManually = false;
+  const isMobileTestimonials = () => window.innerWidth <= 760;
+
+  testimonialsSlider.addEventListener('click', () => {
+    if (!isMobileTestimonials()) return;
+
+    testimonialsPausedManually = !testimonialsPausedManually;
+    testimonialsSlider.classList.toggle('is-paused', testimonialsPausedManually);
+  });
+
+  window.addEventListener('resize', () => {
+    if (!isMobileTestimonials()) {
+      testimonialsPausedManually = false;
+      testimonialsSlider.classList.remove('is-paused');
+    }
+  });
+}
