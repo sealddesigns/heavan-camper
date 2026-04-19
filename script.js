@@ -3,7 +3,8 @@ const nav = document.querySelector('.nav-links');
 
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
-    nav.classList.toggle('open');
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
   });
 }
 
@@ -38,11 +39,10 @@ overviewSliders.forEach((slider) => {
     const firstCard = track.querySelector('.models-overview-card');
     if (!firstCard) return;
 
-    const gapValue =
-      window.getComputedStyle(track).columnGap ||
-      window.getComputedStyle(track).gap;
-
+    const computedStyle = window.getComputedStyle(track);
+    const gapValue = computedStyle.columnGap || computedStyle.gap;
     const gap = parseFloat(gapValue) || 0;
+
     const cardWidth = firstCard.getBoundingClientRect().width;
     const offset = currentIndex * (cardWidth + gap);
 
@@ -106,6 +106,7 @@ const openModal = (type, model) => {
 
   if (modalStatus) {
     modalStatus.textContent = '';
+    modalStatus.classList.remove('is-error');
   }
 };
 
@@ -122,6 +123,7 @@ const closeModal = () => {
 
   if (modalStatus) {
     modalStatus.textContent = '';
+    modalStatus.classList.remove('is-error');
   }
 };
 
@@ -150,7 +152,16 @@ document.addEventListener('keydown', (event) => {
 if (modalForm && modalStatus) {
   modalForm.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (!modalForm.checkValidity()) {
+      modalStatus.textContent = 'Bitte fülle alle Pflichtfelder korrekt aus.';
+      modalStatus.classList.add('is-error');
+      modalForm.reportValidity();
+      return;
+    }
+
     modalStatus.textContent = 'Vielen Dank! Deine Anfrage wurde erfolgreich übermittelt.';
+    modalStatus.classList.remove('is-error');
     modalForm.reset();
   });
 }
@@ -191,6 +202,7 @@ const openAusbauModal = (pkg) => {
 
   if (ausbauModalStatus) {
     ausbauModalStatus.textContent = '';
+    ausbauModalStatus.classList.remove('is-error');
   }
 };
 
@@ -207,6 +219,7 @@ const closeAusbauModal = () => {
 
   if (ausbauModalStatus) {
     ausbauModalStatus.textContent = '';
+    ausbauModalStatus.classList.remove('is-error');
   }
 };
 
@@ -234,7 +247,16 @@ document.addEventListener('keydown', (event) => {
 if (ausbauModalForm && ausbauModalStatus) {
   ausbauModalForm.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (!ausbauModalForm.checkValidity()) {
+      ausbauModalStatus.textContent = 'Bitte fülle alle Pflichtfelder korrekt aus.';
+      ausbauModalStatus.classList.add('is-error');
+      ausbauModalForm.reportValidity();
+      return;
+    }
+
     ausbauModalStatus.textContent = 'Vielen Dank! Deine Anfrage wurde erfolgreich übermittelt.';
+    ausbauModalStatus.classList.remove('is-error');
     ausbauModalForm.reset();
   });
 }
@@ -253,6 +275,7 @@ const createNewsletterToast = () => {
   toast = document.createElement('div');
   toast.id = 'newsletterToast';
   toast.className = 'newsletter-toast';
+  toast.setAttribute('aria-hidden', 'true');
   toast.innerHTML = `
     <button class="newsletter-toast-close" type="button" aria-label="Schließen">&times;</button>
     <strong>Willkommen bei Heavan</strong>
@@ -265,6 +288,7 @@ const createNewsletterToast = () => {
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
       toast.classList.remove('is-visible');
+      toast.setAttribute('aria-hidden', 'true');
     });
   }
 
@@ -276,15 +300,23 @@ const showNewsletterToast = () => {
 
   clearTimeout(newsletterToastTimeout);
   toast.classList.add('is-visible');
+  toast.setAttribute('aria-hidden', 'false');
 
   newsletterToastTimeout = setTimeout(() => {
     toast.classList.remove('is-visible');
+    toast.setAttribute('aria-hidden', 'true');
   }, 4200);
 };
 
 document.querySelectorAll('.newsletter-form').forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
     form.reset();
     showNewsletterToast();
   });
@@ -297,6 +329,7 @@ document.querySelectorAll('.newsletter-form').forEach((form) => {
 const contactForm = document.querySelector('.contact-form');
 const contactToast = document.getElementById('contactToast');
 const contactToastClose = document.getElementById('contactToastClose');
+const contactFormStatus = document.getElementById('contactFormStatus');
 
 let contactToastTimeout;
 
@@ -322,6 +355,21 @@ const hideContactToast = () => {
 if (contactForm) {
   contactForm.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    if (contactFormStatus) {
+      contactFormStatus.textContent = '';
+      contactFormStatus.classList.remove('is-error');
+    }
+
+    if (!contactForm.checkValidity()) {
+      if (contactFormStatus) {
+        contactFormStatus.textContent = 'Bitte fülle alle Pflichtfelder aus und bestätige die Datenschutzerklärung.';
+        contactFormStatus.classList.add('is-error');
+      }
+      contactForm.reportValidity();
+      return;
+    }
+
     contactForm.reset();
     showContactToast();
   });
