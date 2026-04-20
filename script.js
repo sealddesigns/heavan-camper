@@ -386,6 +386,7 @@ if (contactToastClose) {
 const lightboxImages = document.querySelectorAll('.gallery-masonry img, .lightbox-trigger');
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
@@ -403,14 +404,27 @@ if (
 
   const showImage = (index) => {
     currentIndex = index;
-    lightboxImage.src = images[currentIndex].src;
-    lightboxImage.alt = images[currentIndex].alt || 'Großansicht';
+
+    const currentImage = images[currentIndex];
+    const captionText = currentImage.dataset.caption || currentImage.alt || '';
+
+    lightboxImage.src = currentImage.src;
+    lightboxImage.alt = currentImage.alt || 'Großansicht';
+
+    if (lightboxCaption) {
+      lightboxCaption.textContent = captionText;
+      lightboxCaption.style.display = captionText ? 'block' : 'none';
+    }
   };
 
   const closeLightbox = () => {
     lightbox.classList.remove('is-visible');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+
+    if (lightboxCaption) {
+      lightboxCaption.textContent = '';
+    }
   };
 
   images.forEach((img, index) => {
